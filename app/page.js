@@ -1,9 +1,9 @@
-import Image from "next/image";
+import TransactionForm from "./components/TransactionForm";
 
 export default function Home() {
   return (
-    <div className="text-8xl">
-      <h1>Hello</h1>
+    <div>
+      <TransactionForm />
     </div>
   );
 }
