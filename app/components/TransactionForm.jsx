@@ -4,7 +4,6 @@ import Lottie from "lottie-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import financeAnimation from "../../asset/finance graphs.json";
 
 export default function TransactionForm() {
   const [accounts, setAccounts] = useState([]);
