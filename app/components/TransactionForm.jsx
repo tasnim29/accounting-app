@@ -4,8 +4,10 @@ import Lottie from "lottie-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import dynamic from "next/dynamic";
 
 export default function TransactionForm() {
+  const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
   const [accounts, setAccounts] = useState([]);
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
@@ -194,7 +196,12 @@ export default function TransactionForm() {
 
         {/* Right: Lottie Animation */}
         <div className="flex items-center justify-center">
-          <h1 className="text-9xl">hello</h1>
+          <Lottie
+            path="/lottie/finance-graphs.json"
+            autoplay
+            loop
+            style={{ width: 400, height: 400 }}
+          />
         </div>
       </div>
     </div>
