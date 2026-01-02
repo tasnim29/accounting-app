@@ -1,0 +1,38 @@
+import pool from "@/lib/db";
+import { NextResponse } from "next/server";
+
+export async function DELETE(req, { params }) {
+  const { id } = await params; // 👈 unwrap the promise
+  const transactionId = Number(id); // convert to integer
+  console.log("Deleting transaction id:", transactionId);
+
+  const client = await pool.connect();
+
+  try {
+    await client.query("BEGIN");
+
+    // Delete related entries first
+    await client.query(
+      "DELETE FROM transaction_entries WHERE transaction_id = $1",
+      [transactionId]
+    );
+
+    // Then delete transaction
+    await client.query("DELETE FROM transactions WHERE id = $1", [
+      transactionId,
+    ]);
+
+    await client.query("COMMIT");
+
+    return NextResponse.json({ message: "Transaction deleted" });
+  } catch (err) {
+    await client.query("ROLLBACK");
+    console.error("DELETE ERROR:", err);
+    return NextResponse.json(
+      { error: "Failed to delete transaction", details: err.message },
+      { status: 500 }
+    );
+  } finally {
+    client.release();
+  }
+}
