@@ -27,7 +27,7 @@ export default function ReportsPage() {
       <div className="flex gap-2 mb-4">
         <button
           onClick={() => setActiveTab("journal")}
-          className={`px-4 py-2 rounded-t ${
+          className={`px-4 py-2 rounded-t cursor-pointer hover:scale-105 ${
             activeTab === "journal"
               ? "bg-blue-500 text-white"
               : "bg-gray-200 text-gray-700"
@@ -38,7 +38,7 @@ export default function ReportsPage() {
 
         <button
           onClick={() => setActiveTab("balance")}
-          className={`px-4 py-2 rounded-t ${
+          className={`px-4 py-2 rounded-t cursor-pointer hover:scale-105 ${
             activeTab === "balance"
               ? "bg-blue-500 text-white"
               : "bg-gray-200 text-gray-700"
@@ -49,7 +49,7 @@ export default function ReportsPage() {
 
         <button
           onClick={() => setActiveTab("income")}
-          className={`px-4 py-2 rounded-t ${
+          className={`px-4 py-2 rounded-t cursor-pointer hover:scale-105 ${
             activeTab === "income"
               ? "bg-blue-500 text-white"
               : "bg-gray-200 text-gray-700"

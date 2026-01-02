@@ -5,18 +5,20 @@ export async function GET() {
     // Query all transactions with their entries and account info
     const result = await pool.query(`
       SELECT 
-        t.id AS transaction_id,
-        t.date,
-        t.description,
-        e.id AS entry_id,
-        e.type,
-        e.amount,
-        a.name AS account_name,
-        a.type AS account_type
-      FROM transactions t
-      JOIN transaction_entries e ON t.id = e.transaction_id
-      JOIN accounts a ON e.account_id = a.id
-      ORDER BY t.date, t.id, e.id
+  t.id AS transaction_id,
+  t.date,
+  t.description,
+  e.id AS entry_id,
+  e.account_id,        -- ← add this!
+  e.type,
+  e.amount,
+  a.name AS account_name,
+  a.type AS account_type
+FROM transactions t
+JOIN transaction_entries e ON t.id = e.transaction_id
+JOIN accounts a ON e.account_id = a.id
+ORDER BY t.date, t.id, e.id
+
     `);
 
     // Group entries by transaction
@@ -32,6 +34,7 @@ export async function GET() {
       }
       transactionsMap[row.transaction_id].entries.push({
         id: row.entry_id,
+        account_id: row.account_id,
         account_name: row.account_name,
         account_type: row.account_type,
         type: row.type,

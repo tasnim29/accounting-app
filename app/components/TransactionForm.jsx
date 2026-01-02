@@ -163,7 +163,7 @@ export default function TransactionForm() {
             <button
               type="button"
               onClick={addEntry}
-              className="mt-2 text-blue-600 font-semibold hover:underline"
+              className="mt-2 text-blue-600 font-semibold hover:underline cursor-pointer"
             >
               + Add another entry
             </button>
@@ -172,7 +172,7 @@ export default function TransactionForm() {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition"
+            className="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:scale-105 transition cursor-pointer"
           >
             Save Transaction
           </button>
@@ -182,7 +182,7 @@ export default function TransactionForm() {
         <div className="text-center mt-6">
           <Link
             href="/reports"
-            className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+            className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:scale-105  transition"
           >
             View Reports
           </Link>
