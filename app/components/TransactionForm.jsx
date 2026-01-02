@@ -194,11 +194,7 @@ export default function TransactionForm() {
 
         {/* Right: Lottie Animation */}
         <div className="flex items-center justify-center">
-          <Lottie
-            animationData="/lottie/finance-graphs.json"
-            loop
-            className="w-full max-w-md"
-          />
+          <h1 className="text-9xl">hello</h1>
         </div>
       </div>
     </div>
