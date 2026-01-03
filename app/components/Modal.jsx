@@ -8,7 +8,7 @@ export default function Modal({
   accounts,
   saveEdit,
 }) {
-  if (!isOpen) return null; // hide if not open
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
@@ -17,7 +17,6 @@ export default function Modal({
           isOpen ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
         }`}
       >
-        {/* Close button */}
         <button
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
@@ -29,7 +28,6 @@ export default function Modal({
           <>
             <h3 className="text-xl font-bold mb-4">Edit Transaction</h3>
 
-            {/* Date */}
             <div className="mb-4">
               <label className="block font-semibold">Date</label>
               <input
@@ -42,7 +40,6 @@ export default function Modal({
               />
             </div>
 
-            {/* Description */}
             <div className="mb-4">
               <label className="block font-semibold">Description</label>
               <input
@@ -55,7 +52,6 @@ export default function Modal({
               />
             </div>
 
-            {/* Entries */}
             <div>
               <h4 className="font-semibold mb-2">Entries</h4>
               {editingTx.entries.map((entry, index) => (
@@ -136,7 +132,6 @@ export default function Modal({
               </button>
             </div>
 
-            {/* Save / Cancel */}
             <div className="flex gap-2 mt-4 justify-end">
               <button
                 onClick={saveEdit}

@@ -2,7 +2,6 @@ import pool from "@/lib/db";
 
 export async function GET() {
   try {
-    // Get all accounts with sum of debit and credit
     const result = await pool.query(`
       SELECT 
         a.id,
@@ -16,13 +15,12 @@ export async function GET() {
       ORDER BY a.type, a.name
     `);
 
-    // Calculate balance per account
+    // Calculate
     const accounts = result.rows.map((acc) => {
       let balance;
       if (["Asset", "Expense"].includes(acc.type)) {
         balance = parseFloat(acc.total_debit) - parseFloat(acc.total_credit);
       } else {
-        // Liabilities, Equity, Revenue
         balance = parseFloat(acc.total_credit) - parseFloat(acc.total_debit);
       }
       return {

@@ -15,7 +15,6 @@ export default function TransactionForm() {
     { account_id: "", type: "debit", amount: "" },
   ]);
 
-  // Fetch accounts
   useEffect(() => {
     fetch("/api/accounts")
       .then((res) => res.json())
@@ -71,14 +70,12 @@ export default function TransactionForm() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
       <div className="w-full max-w-6xl bg-white shadow-lg rounded-xl p-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Left: Form */}
         <div>
           <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
             Add Transaction
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Date */}
             <div>
               <label className="block text-sm font-semibold mb-1">Date</label>
               <input
@@ -174,7 +171,6 @@ export default function TransactionForm() {
               </button>
             </div>
 
-            {/* Submit */}
             <button
               type="submit"
               className="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:scale-105 transition cursor-pointer"
@@ -183,7 +179,6 @@ export default function TransactionForm() {
             </button>
           </form>
 
-          {/* Reports Link */}
           <div className="text-center mt-6">
             <Link
               href="/reports"
@@ -194,7 +189,6 @@ export default function TransactionForm() {
           </div>
         </div>
 
-        {/* Right: Lottie Animation */}
         <div className="flex items-center justify-center">
           <Lottie
             path="/lottie/finance-graphs.json"

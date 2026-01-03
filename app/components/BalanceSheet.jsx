@@ -36,7 +36,6 @@ export default function BalanceSheet() {
       <h2 className="text-3xl font-bold mb-6 text-gray-800">Balance Sheet</h2>
 
       <div className="grid md:grid-cols-2 gap-6">
-        {/* Assets */}
         <div>
           <h3 className="text-lg font-semibold mb-2 text-gray-700">Assets</h3>
 
@@ -68,9 +67,7 @@ export default function BalanceSheet() {
           </table>
         </div>
 
-        {/* Liabilities & Equity */}
         <div>
-          {/* Liabilities */}
           <h3 className="text-lg font-semibold mb-2 text-gray-700">
             Liabilities
           </h3>
@@ -134,7 +131,6 @@ export default function BalanceSheet() {
         </div>
       </div>
 
-      {/* Equation Check */}
       <div
         className={`mt-6 p-4 rounded font-semibold ${
           isBalanced ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"

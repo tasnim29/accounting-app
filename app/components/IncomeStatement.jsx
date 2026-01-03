@@ -27,7 +27,6 @@ export default function IncomeStatement() {
         Income Statement (Profit & Loss)
       </h2>
 
-      {/* Revenue */}
       <div className="mb-8">
         <h3 className="text-lg font-semibold mb-2 text-gray-700">Revenue</h3>
 
@@ -59,7 +58,6 @@ export default function IncomeStatement() {
         </table>
       </div>
 
-      {/* Expenses */}
       <div className="mb-8">
         <h3 className="text-lg font-semibold mb-2 text-gray-700">Expenses</h3>
 
@@ -91,7 +89,6 @@ export default function IncomeStatement() {
         </table>
       </div>
 
-      {/* Net Profit */}
       <div
         className={`text-xl font-bold p-4 rounded ${
           data.netProfit >= 0

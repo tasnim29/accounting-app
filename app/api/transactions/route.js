@@ -11,10 +11,8 @@ export async function POST(req) {
       });
     }
 
-    // Start a DB transaction
     await pool.query("BEGIN");
 
-    // Insert into transactions table
     const transactionResult = await pool.query(
       "INSERT INTO transactions (date, description) VALUES ($1, $2) RETURNING id",
       [date, description]
@@ -22,7 +20,6 @@ export async function POST(req) {
 
     const transactionId = transactionResult.rows[0].id;
 
-    // Insert each entry into transaction_entries
     for (let entry of entries) {
       await pool.query(
         "INSERT INTO transaction_entries (transaction_id, account_id, type, amount) VALUES ($1, $2, $3, $4)",
@@ -30,7 +27,6 @@ export async function POST(req) {
       );
     }
 
-    // Commit the transaction
     await pool.query("COMMIT");
 
     return new Response(
@@ -42,7 +38,7 @@ export async function POST(req) {
     );
   } catch (err) {
     console.error(err);
-    await pool.query("ROLLBACK"); // Undo DB changes if error
+    await pool.query("ROLLBACK");
     return new Response(
       JSON.stringify({ error: "Failed to save transaction" }),
       {

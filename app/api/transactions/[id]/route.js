@@ -2,8 +2,8 @@ import pool from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function DELETE(req, { params }) {
-  const { id } = await params; // 👈 unwrap the promise
-  const transactionId = Number(id); // convert to integer
+  const { id } = await params;
+  const transactionId = Number(id);
   console.log("Deleting transaction id:", transactionId);
 
   const client = await pool.connect();
@@ -11,13 +11,11 @@ export async function DELETE(req, { params }) {
   try {
     await client.query("BEGIN");
 
-    // Delete related entries first
     await client.query(
       "DELETE FROM transaction_entries WHERE transaction_id = $1",
       [transactionId]
     );
 
-    // Then delete transaction
     await client.query("DELETE FROM transactions WHERE id = $1", [
       transactionId,
     ]);
@@ -46,19 +44,16 @@ export async function PUT(req, { params }) {
   try {
     await client.query("BEGIN");
 
-    // Update main transaction
     await client.query(
       "UPDATE transactions SET date = $1, description = $2 WHERE id = $3",
       [data.date, data.description, transactionId]
     );
 
-    // Delete old entries
     await client.query(
       "DELETE FROM transaction_entries WHERE transaction_id = $1",
       [transactionId]
     );
 
-    // Insert updated entries
     for (const e of data.entries) {
       await client.query(
         "INSERT INTO transaction_entries (transaction_id, account_id, type, amount) VALUES ($1, $2, $3, $4)",
